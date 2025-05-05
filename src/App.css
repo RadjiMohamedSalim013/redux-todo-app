@@ -1,42 +1,264 @@
-#root {
-  max-width: 1280px;
+/* ===== VARIABLES & RESET ===== */
+:root {
+  /* Couleurs */
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3f37c9;
+  --success: #4cc9f0;
+  --danger: #f72585;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #adb5bd;
+  --white: #ffffff;
+
+  /* Espacements */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Bordures */
+  --border-radius: 0.5rem;
+  --border: 1px solid var(--gray);
+
+  /* Ombres */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+  /* Transitions */
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+  background-color: var(--light);
+  padding: var(--spacing-md);
+}
+
+/* ===== STRUCTURE GLOBALE ===== */
+.app {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.app__header {
   text-align: center;
+  margin-bottom: var(--spacing-lg);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app__title {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.app__section {
+  background: var(--white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== COMPOSANT ADDTASK ===== */
+.add-task {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.add-task__input {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.add-task__input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.add-task__button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.add-task__button:hover {
+  background-color: var(--secondary);
+}
+
+/* ===== COMPOSANT FILTERTASKS ===== */
+.filter-tasks {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.filter-tasks__button {
+  background-color: transparent;
+  border: var(--border);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-tasks__button:hover {
+  background-color: var(--light);
+}
+
+.filter-tasks__button--all {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-tasks__button--completed {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.filter-tasks__button--pending {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ===== COMPOSANT TASK ===== */
+.task {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--border-radius);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.task--done {
+  opacity: 0.8;
+  border-left-color: var(--gray);
+}
+
+.task__view-mode {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.task__description {
+  font-size: 1.1rem;
+}
+
+.task__description--completed {
+  text-decoration: line-through;
+  color: var(--gray);
+}
+
+.task__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.task__button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.task__button--toggle {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.task__button--edit {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+.task__button--delete {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.task__button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.task__edit-mode {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.task__edit-input {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+/* ===== COMPOSANT LISTTASK ===== */
+.task-list__empty-message {
+  text-align: center;
+  color: var(--gray);
+  padding: var(--spacing-md) 0;
+}
+
+.task-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .app__title {
+    font-size: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .add-task,
+  .task__edit-mode {
+    flex-direction: column;
+  }
+  
+  .filter-tasks {
+    justify-content: center;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.task {
+  animation: fadeIn 0.3s ease-out;
 }
